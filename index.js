@@ -13,7 +13,9 @@ function genSeed() {
   var seed = new Array(5);
 
   // Assign each array element a number 0-9
-  seed.forEach(genRandom(9));
+  seed.forEach(function(element, index) {
+    seed[index] = genRandom(9); 
+  });
 
-  return seed;
+  alert(seed);
 }
