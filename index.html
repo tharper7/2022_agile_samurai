@@ -18,15 +18,26 @@ text output: cardItem (ie. cardName) -->
         <p id="nameLabel">Card Name: <span id="cardName"></span></p>
 
     </div>
+  
+<!--  Probably don't neet this to be a div due to 
+it just being a background color
+
     <div id="colorDiv">
         
         <p id="colorLabel">Card Color: <span id="cardColor"></span></p>
 
     </div>
+-->
+  
     <div id="manaDiv">
 
         <p id="manaLabel">Mana cost: <span id="cardMana"></span></p>
         
+    </div>
+    <div id="imgDiv">
+        
+        <p id="imgLabel">Image: <span id="cardImg"></span></p>
+
     </div>
     <div id="typeDiv">
 
@@ -48,12 +59,15 @@ text output: cardItem (ie. cardName) -->
         <p id="toughnessLabel">Toughness: <span id="cardToughness"></span></p>
 
     </div>
+</div>
+  
+    <br>
     <div id="buttonDiv">
 
         <input type="button" id="genButton" value="Generate!" onclick="genSeed()">
         
     </div>
-</div>
+  
 </body>
 </html>
 
