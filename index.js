@@ -23,6 +23,13 @@ function genSeed() {
   let text = seed [2];
   let power = seed[3];
   let toughness = seed[4];
+  
+  // Set Power and Toughness
+  let powerValue = document.getElementById("cardPower");
+  let toughnessValue = document.getElementById("cardToughness");
+  
+  powerValue.innerHTML = power + " /";
+  toughnessValue.innerHTML = toughness;
 
   // Setting color from 1 - 6
   let color = genRandom(6);
@@ -178,13 +185,20 @@ function genSeed() {
       textBox.innerHTML = textAbility + "<br>Sacrifice " + textCost + " other creatures: " + textEffect + ". Target " + textType + " gains shroud until end of turn.";
       break;
     case 6:
-      textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have indestructible.";
+      if (textType.equals("Instant") || textType.equals("Sorcery")) {
+        textBox.innerHTML = textAbility + "<br>If you have cast at least " + textCost + " " + textType + ", until end of turn " + textType + " you control can't be countered.";
+      } else {
+        textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have indestructible.";
+      }
+      console.log("Type: " + textType);
       break;
     case 7:
-      textBox.innerHTML = "At the begining of your upkeep, you may cast a " + textType + " spell from your graveyard. This spell costs " + textCost + " less to cast.";
+      textBox.innerHTML = "At the begining of your upkeep, you may play a " + textType + " card from your graveyard. This spell costs " + textCost + " less to cast.";
       break;
     case 8:
       textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect; 
   }
+  
+  
   
 }
