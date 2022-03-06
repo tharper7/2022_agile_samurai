@@ -33,7 +33,6 @@ function genSeed() {
 
   // Setting color from 1 - 6
   let color = genRandom(6);
-  console.log("COLOR: " + color);
   let container = document.getElementById("container");
 
   switch(color) {
@@ -70,7 +69,14 @@ function genSeed() {
   let textTrigger = genRandom(5);
   let textCost = genRandom(4);
   let textAbility = genRandom(8);
+
+  console.log("textType: " + textType);
+  console.log("textEffect: " + textEffect);
+  console.log("textTrigger: " + textTrigger);
+  console.log("textCost: " + textCost);
+  console.log("textAbility: " + textAbility);
   
+  textType = 5;
   switch(textType) {
     case 1:
       textType = "Creature";
@@ -94,6 +100,8 @@ function genSeed() {
       textType = "Land";
       break;
   }
+
+  console.log("New textType: " + textType);
   
   switch(textEffect) {
     case 1:
@@ -121,6 +129,7 @@ function genSeed() {
       textEffect = "make target player mill 2 cards";
       break;
   }
+  console.log("New textEffect: " + textEffect);
   
   switch(textTrigger) {
     case 1:
@@ -139,6 +148,8 @@ function genSeed() {
       textTrigger = "deals combat damage";
       break;
   }
+
+  console.log("New textTrigger: " + textTrigger);
   
   switch(textAbility) {
     case 1:
@@ -166,8 +177,11 @@ function genSeed() {
       textAbility = "Trample";
       break;
   }
+
+  console.log("New textAbility: " + textAbility);
   
   // Set text format and add it to the textbox
+  text = 6;
   switch(text) {
     case 1:
       textBox.innerHTML = "Whenever you cast a " + textType + " spell, you may " + textEffect + ".";
@@ -185,7 +199,7 @@ function genSeed() {
       textBox.innerHTML = textAbility + "<br>Sacrifice " + textCost + " other creatures: " + textEffect + ". Target " + textType + " gains shroud until end of turn.";
       break;
     case 6:
-      if (textType.equals("Instant") || textType.equals("Sorcery")) {
+      if (textType == "Instant" || textType == "Sorcery") {
         textBox.innerHTML = textAbility + "<br>If you have cast at least " + textCost + " " + textType + ", until end of turn " + textType + " you control can't be countered.";
       } else {
         textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have indestructible.";
@@ -196,7 +210,8 @@ function genSeed() {
       textBox.innerHTML = "At the begining of your upkeep, you may play a " + textType + " card from your graveyard. This spell costs " + textCost + " less to cast.";
       break;
     case 8:
-      textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect; 
+      textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect;
+      break;
   }
   
   
