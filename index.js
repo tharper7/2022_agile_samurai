@@ -1,30 +1,30 @@
 // Generate a card on load
-window.onload = genSeed();
+window.onload = genValue();
 
 // Generate a random number 1 - max
 function genRandom(max) {
   return Math.floor(Math.random() * max + 1);
 }
 
-function genSeed() {
+function genValue() {
 
-    // Create seed array
-    let seed = new Array(5);
-    let arrayLength = seed.length;
+    // Create value array
+    let value = new Array(5);
+    let arrayLength = value.length;
 
     // Set a random number 1 - 8 to the array
     for (let i = 0; i < arrayLength; i++) {
-        seed[i] = genRandom(8);
+        value[i] = genRandom(8);
     }
 
-    console.log("SEED: " + seed);
+    console.log("VALUE: " + value);
 
     // Using array to set values for card
-    let mana = seed[0];
-    let type = seed[1];
-    let text = seed[2];
-    let power = seed[3];
-    let toughness = seed[4];
+    let mana = value[0];
+    let type = value[1];
+    let text = value[2];
+    let power = value[3];
+    let toughness = value[4];
 
     // Generate values for the card
     genMana(mana);
@@ -42,7 +42,7 @@ function genSeed() {
         manaValue.innerHTML = mana;
     }
 
-    function genText(textSeed) {
+    function genText(textValue) {
         // Set text format effects/keywords
         let textBox = document.getElementById("cardText");
         let textType = genRandom(7);
@@ -154,7 +154,7 @@ function genSeed() {
         }
 
         // Set text format and add it to the textbox
-        switch (textSeed) {
+        switch (textValue) {
             case 1:
                 textBox.innerHTML = "Whenever you cast a " + textType + " spell, you may " + textEffect + ".";
                 break;
