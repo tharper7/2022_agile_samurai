@@ -233,28 +233,28 @@ function genSeed() {
         let typeID = document.getElementById("cardType");
         switch (type) {
             case 1:
-                typeID.innerHTML = "Human";
+                typeID.innerHTML = "Legendary Creature Human";
                 break;
             case 2:
-                typeID.innerHTML = "Elf";
+                typeID.innerHTML = "Legendary Creature Elf";
                 break;
             case 3:
-                typeID.innerHTML = "Dwarf";
+                typeID.innerHTML = "Legendary Creature Dwarf";
                 break;
             case 4:
-                typeID.innerHTML = "Vampire";
+                typeID.innerHTML = "Legendary Creature Vampire";
                 break;
             case 5:
-                typeID.innerHTML = "Construct";
+                typeID.innerHTML = "Legendary Creature Construct";
                 break;
             case 6:
-                typeID.innerHTML = "Beast";
+                typeID.innerHTML = "Legendary Creature Beast";
                 break;
             case 7:
-                typeID.innerHTML = "Bird";
+                typeID.innerHTML = "Legendary Creature Bird";
                 break;
             case 8:
-                typeID.innerHTML = "Phoenix";
+                typeID.innerHTML = "Legendary Creature Phoenix";
                 break;
             default:
                 break;
