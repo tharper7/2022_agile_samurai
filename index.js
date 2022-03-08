@@ -27,6 +27,7 @@ function genValue() {
     let toughness = value[4];
 
     // Generate values for the card
+    genName();
     genMana(mana);
     genText(text);
     genPowerToughness(power, toughness);
@@ -259,5 +260,22 @@ function genValue() {
             default:
                 break;
         }
+    }
+
+    function genName() {
+        let name;
+        const primary = ["Aboshan", "Acererak", "Valec", "Rekniros", "Bongata", "Gangzia", "Deguro", "Chagi", "Trevraiyur", "Noviayed", "Lia", "Zuoshon", "Yiunren", "Shiu", "Chenja",
+        "Choye", "Aelnina", "Cadduc", "Tigis", "Moji", "Feiti", "Phasha", "Nastaexi", "Tosi", "Vollis"];
+
+        const secondary = [" the Archlich", ", Apex Predator", ", Mobilized for War", " the Seeker", ", Adversary of Tyrants", ", Caller of the Pride", ", Unyielding",
+        ", Inspiring Leader", " the Greedhearted", ", Valiant Protector", " the Fateshifter", ", Captain of Chaos", " the Flame-Chained", ", Embraced by the Moon", ", Nightmare Muse", 
+        ", Fire Artisan", ", Shadow Slayer", ", Scrap Savant", ", Rogue Shadowmage", ", Anarch of Bolas", ", Chaos Bringer", ", City Smasher", ", Architecht of Law", ", Grand Arbiter", ", Hand of Control"];
+
+        primaryName = primary[genRandom(25)];
+        secondaryName = secondary[genRandom(25)];
+
+        name = primaryName + secondaryName;
+        
+        cardName.innerHTML = name;
     }
 }
