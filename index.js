@@ -149,20 +149,19 @@ function genValue() {
     // Power/Toughness
     function genPowerToughness(power, toughness) {
         // Set Power and Toughness
-        let powerValue = document.getElementById("cardPower");
-        let toughnessValue = document.getElementById("cardToughness");
+        let cardPowerToughness = document.getElementById("cardPowerToughness");
+        //let toughnessValue = document.getElementById("cardToughness");
 
-        powerValue.innerHTML = power + " /";
-        toughnessValue.innerHTML = toughness;
+        cardPowerToughness.innerHTML = power + " / " + toughness;
     }
 
     // Color
     function genColor() {
         // Setting color from 1 - 6
-        const colorArray = ["d3d3d3", "ffffff", "ff3c3c", "397a04", "4775ff", "5c5c5c"];
+        const colorArray = ["colorless", "white", "red", "blue", "green", "black"];
         const container = document.getElementById("container");
 
-        container.style.backgroundColor = "#" + colorArray[(genRandom(6) - 1)];
+        container.style.backgroundImage = "url('./images/background_" + colorArray[(genRandom(6) - 1)] + ".png')";
     }
 
     // Type

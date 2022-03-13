@@ -7,19 +7,21 @@
 
 #nameDiv {
   float: left;
-  margin-top: 1%;
-  margin-left: 1%;
-  width: 65%;
-  height: 6%;
+  margin-top: 5%;
+  margin-left: 4%;
+  width: 90%;
+  height: 5%;
   font-weight: bold;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom: 3.7px solid black;
-  border-left: 3.7px solid black;
-  border-top: 3.7px solid black;  
+  border-radius: 15px;
+  /*border: 3.7px solid red;*/
 }
 
-#manaDiv {
+#cardMana {
+  float: right;
+  background-image: url("./images/0.png");
+}
+
+/*#manaDiv {
   float: left;
   margin-top: 1%;
   margin-right: 1%;
@@ -30,60 +32,58 @@
   border-bottom-right-radius: 15px;
   border-bottom: 3.7px solid black;
   border-right: 3.7px solid black;
-  border-top: 3.7px solid black;  
-}
+  border-top: 3.7px solid black; 
+}*/
 
 #imgDiv {
   float: left;
-  width: 94%;
+  width: 91%;
   height: 47%;
-  margin-left: 2%;
-  margin-right: 2%;
-  border-radius: 10px;
-  border: 3.7px solid black
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 #typeDiv {
   float: left;
-  margin-left: 1%;
-  margin-right: 1%;
-  width: 97%;
-  height: 6%;
+  margin-top: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
+  width: 90%;
+  height: 4%;
   font-weight: bold;
-  border-radius: 15px;
-  border: 3.7px solid black;
+  /*border-radius: 15px;
+  border: 3.7px solid red;*/
 }
 
 #textDiv {
   float: left;
-  margin-left: 2%;
-  margin-right: 2%;
-  width: 94%;
-  height: 28%;
-  border: 3.7px solid black;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 88%;
+  height: 27%;
+  /*border: 3.7px solid red;*/
 }
 
-#powerDiv {
+#powerToughnessDiv {
   float: left;
-  margin-left: 53%;
-  width: 20%;
-  height: 6%;
+  margin-top: 3%;
+  margin-left: 80%;
+  width: 16%;
+  height: 4%;
   font-weight: bold;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom: 3.7px solid black;
-  border-left: 3.7px solid black;
-  border-top: 3.7px solid black;  
+  /*border: 3.7px solid red;*/
 }
 
-#toughnessDiv {
+/*#toughnessDiv {
   float: left;
-  width: 25%;
-  height: 6%;
+  width: 12%;
+  height: 4%;
   font-weight: bold;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  border-bottom: 3.7px solid black;
-  border-right: 3.7px solid black;
-  border-top: 3.7px solid black;  
-}
+  border-bottom: 3.7px solid red;
+  border-right: 3.7px solid red;
+  border-top: 3.7px solid red; 
+}*/
