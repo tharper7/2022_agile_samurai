@@ -32,10 +32,10 @@ function genValue() {
     genText(text);
     genPowerToughness(power, toughness);
     genColor();
-    genType();
+    genType(type);
 
 
-
+    // Mana
     function genMana(mana) {
         // Set mana
         let manaValue = document.getElementById("cardMana");
@@ -43,44 +43,24 @@ function genValue() {
         manaValue.innerHTML = mana;
     }
 
+    // Text
     function genText(textValue) {
         // Set text format effects/keywords
         let textBox = document.getElementById("cardText");
-        let textType = genRandom(7);
+        let textType = "";
         let textEffect = genRandom(8);
         let textTrigger = genRandom(5);
         let textCost = genRandom(4);
-        let textAbility = genRandom(8);
+        let textAbility = "";
 
-        console.log("textType: " + textType);
         console.log("textEffect: " + textEffect);
         console.log("textTrigger: " + textTrigger);
         console.log("textCost: " + textCost);
-        console.log("textAbility: " + textAbility);
 
-        switch (textType) {
-            case 1:
-                textType = "Creature";
-                break;
-            case 2:
-                textType = "Artifact";
-                break;
-            case 3:
-                textType = "Enchantment";
-                break;
-            case 4:
-                textType = "Instant";
-                break;
-            case 5:
-                textType = "Sorcery";
-                break;
-            case 6:
-                textType = "Planeswalker";
-                break;
-            case 7:
-                textType = "Land";
-                break;
-        }
+        // Type
+        const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
+        textType = typeArray[(genRandom(7) - 1)];
+
 
         switch (textEffect) {
             case 1:
@@ -127,32 +107,9 @@ function genValue() {
                 break;
         }
 
-        switch (textAbility) {
-            case 1:
-                textAbility = "Deathtouch";
-                break;
-            case 2:
-                textAbility = "Lifelink";
-                break;
-            case 3:
-                textAbility = "Vigilance";
-                break;
-            case 4:
-                textAbility = "First Strike";
-                break;
-            case 5:
-                textAbility = "Double Strike";
-                break;
-            case 6:
-                textAbility = "Indestructible";
-                break;
-            case 7:
-                textAbility = "Haste";
-                break;
-            case 8:
-                textAbility = "Trample";
-                break;
-        }
+        // Ability
+        const abilityArray = ["Deathtouch", "Lifelink", "Vigilance", "First Strike", "Double Strike", "Indestructible", "Haste", "Trample"];
+        textAbility = abilityArray[(genRandom(8) - 1)];
 
         // Set text format and add it to the textbox
         switch (textValue) {
@@ -188,6 +145,8 @@ function genValue() {
         }
     }
 
+
+    // Power/Toughness
     function genPowerToughness(power, toughness) {
         // Set Power and Toughness
         let powerValue = document.getElementById("cardPower");
@@ -197,69 +156,22 @@ function genValue() {
         toughnessValue.innerHTML = toughness;
     }
 
+    // Color
     function genColor() {
         // Setting color from 1 - 6
-        let color = genRandom(6);
-        let container = document.getElementById("container");
+        const colorArray = ["d3d3d3", "ffffff", "ff3c3c", "397a04", "4775ff", "5c5c5c"];
+        const container = document.getElementById("container");
 
-        switch (color) {
-            case 1:
-                // Colorless
-                container.style.backgroundColor = "#d3d3d3";
-                break;
-            case 2:
-                // White
-                container.style.backgroundColor = "#ffffff";
-                break;
-            case 3:
-                // Red
-                container.style.backgroundColor = "#ff3c3c";
-                break;
-            case 4:
-                // Green
-                container.style.backgroundColor = "#397a04";
-                break;
-            case 5:
-                // Blue
-                container.style.backgroundColor = "#4775ff";
-                break;
-            case 6:
-                // Black
-                container.style.backgroundColor = "#5c5c5c";
-                break;
-        }
+        container.style.backgroundColor = "#" + colorArray[(genRandom(6) - 1)];
     }
 
-    function genType() {
-        let typeID = document.getElementById("cardType");
-        switch (type) {
-            case 1:
-                typeID.innerHTML = "Legendary Creature - Human";
-                break;
-            case 2:
-                typeID.innerHTML = "Legendary Creature - Elf";
-                break;
-            case 3:
-                typeID.innerHTML = "Legendary Creature - Dwarf";
-                break;
-            case 4:
-                typeID.innerHTML = "Legendary Creature - Vampire";
-                break;
-            case 5:
-                typeID.innerHTML = "Legendary Creature - Construct";
-                break;
-            case 6:
-                typeID.innerHTML = "Legendary Creature - Beast";
-                break;
-            case 7:
-                typeID.innerHTML = "Legendary Creature - Bird";
-                break;
-            case 8:
-                typeID.innerHTML = "Legendary Creature - Phoenix";
-                break;
-            default:
-                break;
-        }
+    // Type
+    function genType(number) {
+
+        const typeArray = ["Human", "Elf", "Dwarf", "Vampire", "Construct", "Beast", "Bird", "Phoenix"];
+        const typeID = document.getElementById("cardType");
+
+        typeID.innerHTML = "Legendary Creature - " + typeArray[(genRandom(number) - 1)];
     }
 
     function genName() {
@@ -267,15 +179,19 @@ function genValue() {
         const primary = ["Aboshan", "Acererak", "Valec", "Rekniros", "Bongata", "Gangzia", "Deguro", "Chagi", "Trevraiyur", "Noviayed", "Lia", "Zuoshon", "Yiunren", "Shiu", "Chenja",
         "Choye", "Aelnina", "Cadduc", "Tigis", "Moji", "Feiti", "Phasha", "Nastaexi", "Tosi", "Vollis"];
 
-        const secondary = [" the Archlich", ", Apex Predator", ", Mobilized for War", " the Seeker", ", Adversary of Tyrants", ", Caller of the Pride", ", Unyielding",
-        ", Inspiring Leader", " the Greedhearted", ", Valiant Protector", " the Fateshifter", ", Captain of Chaos", " the Flame-Chained", ", Embraced by the Moon", ", Nightmare Muse", 
-        ", Fire Artisan", ", Shadow Slayer", ", Scrap Savant", ", Rogue Shadowmage", ", Anarch of Bolas", ", Chaos Bringer", ", City Smasher", ", Architecht of Law", ", Grand Arbiter", ", Hand of Control"];
+        const secondary = ["the Archlich", "Apex Predator", "Mobilized for War", "the Seeker", "Adversary of Tyrants", "Caller of the Pride", "Unyielding",
+        "Inspiring Leader", "the Greedhearted", "Valiant Protector", "the Fateshifter", "Captain of Chaos", "the Flame-Chained", "Embraced by the Moon", "Nightmare Muse", 
+        "Fire Artisan", "Shadow Slayer", "Scrap Savant", "Rogue Shadowmage", "Anarch of Bolas", "Chaos Bringer", "City Smasher", "Architecht of Law", "Grand Arbiter", "Hand of Control"];
 
-        primaryName = primary[genRandom(25)];
-        secondaryName = secondary[genRandom(25)];
+        primaryName = primary[(genRandom(25) - 1)];
+        secondaryName = secondary[(genRandom(25) - 1)];
 
-        name = primaryName + secondaryName;
-        
-        cardName.innerHTML = name;
+        if (secondaryName.substring(0, 4) === "the ") {
+            secondaryName = " " + secondaryName;
+        } else {
+            secondaryName = ", " + secondaryName;
+        }
+
+        cardName.innerHTML = primaryName + secondaryName;
     }
 }
