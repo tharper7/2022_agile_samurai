@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // Generate a card on load
 window.onload = genValue();
 
@@ -9,22 +10,22 @@ function genRandom(max) {
 function genValue() {
 
     // Create value array
-    let value = new Array(5);
-    let arrayLength = value.length;
+    var value = new Array(5);
+    var arrayLength = value.length;
 
     // Set a random number 1 - 8 to the array
-    for (let i = 0; i < arrayLength; i++) {
+    for (var i = 0; i < arrayLength; i++) {
         value[i] = genRandom(8);
     }
 
     console.log("VALUE: " + value);
 
     // Using array to set values for card
-    let mana = value[0];
-    let type = value[1];
-    let text = value[2];
-    let power = value[3];
-    let toughness = value[4];
+    var mana = value[0];
+    var type = value[1];
+    var text = value[2];
+    var power = value[3];
+    var toughness = value[4];
 
     // Generate values for the card
     genName();
@@ -38,20 +39,20 @@ function genValue() {
     // Mana
     function genMana(mana) {
         // Set mana
-        let manaValue = document.getElementById("cardMana");
-        console.log(mana)
+        var manaValue = document.getElementById("cardMana");
+        console.log(mana);
         manaValue.innerHTML = mana;
     }
 
     // Text
     function genText(textValue) {
         // Set text format effects/keywords
-        let textBox = document.getElementById("cardText");
-        let textType = "";
-        let textEffect = genRandom(8);
-        let textTrigger = genRandom(5);
-        let textCost = genRandom(4);
-        let textAbility = "";
+        var textBox = document.getElementById("cardText");
+        var textType = "";
+        var textEffect = genRandom(8);
+        var textTrigger = genRandom(5);
+        var textCost = genRandom(4);
+        var textAbility = "";
 
         console.log("textEffect: " + textEffect);
         console.log("textTrigger: " + textTrigger);
@@ -149,12 +150,13 @@ function genValue() {
     // Power/Toughness
     function genPowerToughness(power, toughness) {
         // Set Power and Toughness
-        let cardPowerToughness = document.getElementById("cardPowerToughness");
+        var cardPowerToughness = document.getElementById("cardPowerToughness");
         //let toughnessValue = document.getElementById("cardToughness");
 
         cardPowerToughness.innerHTML = power + " / " + toughness;
     }
 
+  
     // Color
     function genColor() {
         // Setting color from 1 - 6
@@ -174,7 +176,6 @@ function genValue() {
     }
 
     function genName() {
-        let name;
         const primary = ["Aboshan", "Acererak", "Valec", "Rekniros", "Bongata", "Gangzia", "Deguro", "Chagi", "Trevraiyur", "Noviayed", "Lia", "Zuoshon", "Yiunren", "Shiu", "Chenja",
         "Choye", "Aelnina", "Cadduc", "Tigis", "Moji", "Feiti", "Phasha", "Nastaexi", "Tosi", "Vollis"];
 
@@ -182,8 +183,8 @@ function genValue() {
         "Inspiring Leader", "the Greedhearted", "Valiant Protector", "the Fateshifter", "Captain of Chaos", "the Flame-Chained", "Embraced by the Moon", "Nightmare Muse", 
         "Fire Artisan", "Shadow Slayer", "Scrap Savant", "Rogue Shadowmage", "Anarch of Bolas", "Chaos Bringer", "City Smasher", "Architecht of Law", "Grand Arbiter", "Hand of Control"];
 
-        primaryName = primary[(genRandom(25) - 1)];
-        secondaryName = secondary[(genRandom(25) - 1)];
+        var primaryName = primary[(genRandom(25) - 1)];
+        var secondaryName = secondary[(genRandom(25) - 1)];
 
         if (secondaryName.substring(0, 4) === "the ") {
             secondaryName = " " + secondaryName;
@@ -191,6 +192,7 @@ function genValue() {
             secondaryName = ", " + secondaryName;
         }
 
+      	const cardName = document.getElementById("cardName");
         cardName.innerHTML = primaryName + secondaryName;
     }
 }
