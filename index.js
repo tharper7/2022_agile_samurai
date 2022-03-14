@@ -44,10 +44,13 @@ function genValue() {
 
     // Mana
     function genMana(mana) {
-        // Set mana
-        let manaValue = document.getElementById("cardMana");
-        console.log(mana)
-        manaValue.innerHTML = mana;
+      // Set mana
+      let manaValue = document.getElementById("cardMana");
+      console.log(mana)
+
+//      manaValue.innerHTML = mana;
+
+      manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
     }
 
     // Text
