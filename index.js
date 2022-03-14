@@ -30,18 +30,28 @@ function genValue() {
     // Generate values for the card
     genName();
     genMana(mana);
-    genText(text);
     genPowerToughness(power, toughness);
     genColor();
     genType(type);
 
+    // Set text format to selected format, or stay random if unselected
+    let selText = document.querySelector("#selFormat");
+    let selTextVal = selText.selectedIndex;
+    if (selTextVal == 0) {
+      genText(text);
+    } else {
+      genText(selTextVal);
+    }
 
     // Mana
     function genMana(mana) {
         // Set mana
         var manaValue = document.getElementById("cardMana");
         console.log(mana);
-        manaValue.innerHTML = mana;
+
+        //      manaValue.innerHTML = mana;
+
+        manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
     }
 
     // Text
@@ -57,37 +67,37 @@ function genValue() {
         console.log("textEffect: " + textEffect);
         console.log("textTrigger: " + textTrigger);
         console.log("textCost: " + textCost);
+        console.log("selFormat:" + selTextVal);
 
         // Type
         const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
         textType = typeArray[(genRandom(7) - 1)];
 
-
         switch (textEffect) {
-            case 1:
-                textEffect = "draw a card";
-                break;
-            case 2:
-                textEffect = "create a 2/2 black zombie creature token";
-                break;
-            case 3:
-                textEffect = "draw two cards and then discard a card";
-                break;
-            case 4:
-                textEffect = "return a noncreature card from your graveyard to your hand";
-                break;
-            case 5:
-                textEffect = "return a target nonland permanent to it's owners hand";
-                break;
-            case 6:
-                textEffect = "exile a card from a graveyard";
-                break;
-            case 7:
-                textEffect = "add one mana of any color to your mana pool";
-                break;
-            case 8:
-                textEffect = "make target player mill 2 cards";
-                break;
+          case 1:
+              textEffect = "draw a card";
+              break;
+          case 2:
+              textEffect = "create a 2/2 black zombie creature token";
+              break;
+          case 3:
+              textEffect = "draw two cards and then discard a card";
+              break;
+          case 4:
+              textEffect = "return a noncreature card from your graveyard to your hand";
+              break;
+          case 5:
+              textEffect = "return a target nonland permanent to it's owners hand";
+              break;
+          case 6:
+              textEffect = "exile a card from a graveyard";
+              break;
+          case 7:
+              textEffect = "add one mana of any color to your mana pool";
+              break;
+          case 8:
+              textEffect = "make target player mill 2 cards";
+              break;
         }
 
         switch (textTrigger) {
@@ -113,6 +123,8 @@ function genValue() {
         textAbility = abilityArray[(genRandom(8) - 1)];
 
         // Set text format and add it to the textbox
+      
+        
         switch (textValue) {
             case 1:
                 textBox.innerHTML = "Whenever you cast a " + textType + " spell, you may " + textEffect + ".";
@@ -144,6 +156,7 @@ function genValue() {
                 textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect;
                 break;
         }
+        
     }
 
 
