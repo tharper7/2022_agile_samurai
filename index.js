@@ -73,6 +73,7 @@ function genValue() {
         const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
         textType = typeArray[(genRandom(7) - 1)];
 
+        // Effect
         switch (textEffect) {
           case 1:
               textEffect = "draw a card";
@@ -96,10 +97,12 @@ function genValue() {
               textEffect = "add one mana of any color to your mana pool";
               break;
           case 8:
-              textEffect = "make target player mill 2 cards";
+              textEffect = "target player mills 2 cards";
               break;
         }
-
+        
+      
+        // Triggers
         switch (textTrigger) {
             case 1:
                 textTrigger = "dies";
@@ -147,10 +150,13 @@ function genValue() {
                 } else {
                     textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have indestructible.";
                 }
-                console.log("Type: " + textType);
                 break;
             case 7:
-                textBox.innerHTML = "At the begining of your upkeep, you may play a " + textType + " card from your graveyard. This spell costs " + textCost + " less to cast.";
+                if (textType == "Land") {
+                  textBox.innerHTML = textAbility + "<br>At the begining of your upkeep, you may play a " + textType + " card from your graveyard.";
+                } else {
+                  textBox.innerHTML = "At the begining of your upkeep, you may play a " + textType + " card from your graveyard. This spell costs " + textCost + " less to cast.";
+                }
                 break;
             case 8:
                 textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect;

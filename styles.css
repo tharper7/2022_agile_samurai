@@ -80,6 +80,9 @@
   /*border: 3.7px solid red;*/
 }
 
+#formatSelector {
+  width: 400px;
+}
 /*#toughnessDiv {
   float: left;
   width: 12%;
