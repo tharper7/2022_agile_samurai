@@ -28,19 +28,26 @@ function genValue() {
     var toughness = value[4];
 
     // Generate values for the card
-    genName();
+    
     genMana(mana);
     genPowerToughness(power, toughness);
     genColor();
     genType(type);
 
+    // Set the name if there is one
+    let nameBox = document.getElementById("nameTextBox").value;
+    if (nameBox == "") {
+      genName();
+    } else {
+      cardName.innerHTML = nameBox;
+    }
+  
     // Set text format to selected format, or stay random if unselected
-    let selText = document.querySelector("#selFormat");
-    let selTextVal = selText.selectedIndex;
-    if (selTextVal == 0) {
+    let selText = document.querySelector("#selFormat").selectedIndex;
+    if (selText == 0) {
       genText(text);
     } else {
-      genText(selTextVal);
+      genText(selText);
     }
 
     // Mana
@@ -67,7 +74,7 @@ function genValue() {
         console.log("textEffect: " + textEffect);
         console.log("textTrigger: " + textTrigger);
         console.log("textCost: " + textCost);
-        console.log("selFormat:" + selTextVal);
+        // console.log("selFormat:" + selTextVal);
 
         // Type
         const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
