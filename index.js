@@ -181,7 +181,7 @@ function genValue() {
         let color = colorArray[(genRandom(6) - 1)];
       
         container.style.backgroundImage = "url('./images/background_" + color + ".png')";
-        console.log(color);
+        console.log("Color: " + color);
         return color;
     }
   
@@ -194,7 +194,16 @@ function genValue() {
 
         console.log("mana: " + mana);
 
-        let color = genColor();
+        let color;
+        let selColor = document.querySelector("#selColor").value;
+      console.log("selColor Value: " + selColor);
+        if (selColor == "default") {
+          color = genColor();
+        } else {
+          color = selColor;
+          const container = document.getElementById("container");
+          container.style.backgroundImage = "url('./images/background_" + color + ".png')";
+        }
         
         // Clear out any symbols from a previous card
         manaValue.style.backgroundImage = "none";
