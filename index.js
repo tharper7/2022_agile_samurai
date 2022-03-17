@@ -31,7 +31,7 @@ function genValue() {
     
     genMana(mana);
     genPowerToughness(power, toughness);
-    genColor();
+    // genColor();
     genType(type);
 
     // Set the name if there is one
@@ -49,17 +49,7 @@ function genValue() {
     } else {
       genText(selText);
     }
-
-    // Mana
-    function genMana(mana) {
-        // Set mana
-        var manaValue = document.getElementById("cardMana");
-        console.log(mana);
-
-        //      manaValue.innerHTML = mana;
-
-        manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
-    }
+    
 
     // Text
     function genText(textValue) {
@@ -188,8 +178,72 @@ function genValue() {
         // Setting color from 1 - 6
         const colorArray = ["colorless", "white", "red", "blue", "green", "black"];
         const container = document.getElementById("container");
+        let color = colorArray[(genRandom(6) - 1)];
+      
+        container.style.backgroundImage = "url('./images/background_" + color + ".png')";
+        console.log(color);
+        return color;
+    }
+  
+    // Mana
+    function genMana(mana) {
+        // Set mana
+        var manaValue = document.getElementById("cardMana");
+        var manaValue2 = document.getElementById("cardMana2");
+        var manaValue3 = document.getElementById("cardMana3");
 
-        container.style.backgroundImage = "url('./images/background_" + colorArray[(genRandom(6) - 1)] + ".png')";
+        console.log("mana: " + mana);
+
+        let color = genColor();
+        
+        // Clear out any symbols from a previous card
+        manaValue.style.backgroundImage = "none";
+        manaValue2.style.backgroundImage = "none";
+        manaValue3.style.backgroundImage = "none";
+
+        //      manaValue.innerHTML = mana;
+        if (color == "colorless") {
+          manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
+        } else {
+          switch (mana) {
+            case 1:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              break;
+            case 2:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/1.png')";
+              break;
+            case 3:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/2.png')";
+              break;
+            case 4:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/2.png')";
+              break;
+            case 5:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/3.png')";
+              break;
+            case 6:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/4.png')";
+              break;
+            case 7:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/5.png')";
+              break;
+            case 8:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/6.png')";
+              break;
+          }
+        }
     }
 
     // Type
