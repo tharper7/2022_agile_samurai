@@ -31,7 +31,6 @@ function genValue() {
     
     genMana(mana);
     genPowerToughness(power, toughness);
-    // genColor();
     genType(type);
 
     // Set the name if there is one
@@ -194,6 +193,7 @@ function genValue() {
 
         console.log("mana: " + mana);
 
+        // Set mana symbol
         let color;
         let selColor = document.querySelector("#selColor").value;
       console.log("selColor Value: " + selColor);
