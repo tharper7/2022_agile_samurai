@@ -156,7 +156,7 @@ function genValue() {
                 }
                 break;
             case 8:
-                textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect + ".";
+                textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect;
                 break;
         }
         
@@ -194,6 +194,7 @@ function genValue() {
 
       genMana(color)
       genType(color)
+      genName(color);
       return color;
     }
   
@@ -257,7 +258,7 @@ function genValue() {
         }
     }
 
-
+    // Type
     function genType(color) {
         const typeID = document.getElementById("cardType");
 
@@ -302,8 +303,6 @@ function genValue() {
         }
 
         typeID.innerHTML = "Legendary Creature - " + creature;
-
-        genName(color);
     }
 
     function genName(color) {
@@ -316,26 +315,36 @@ function genValue() {
         
         const primary = ["Aboshan", "Acererak", "Valec", "Rekniros", "Bongata", "Gangzia", "Deguro", "Chagi", "Trevraiyur", "Noviayed", "Lia", "Zuoshon", "Yiunren", "Shiu", "Chenja",
         "Choye", "Aelnina", "Cadduc", "Tigis", "Moji", "Feiti", "Phasha", "Nastaexi", "Tosi", "Vollis"];
-
+        var primaryName = primary[(genRandomZeroItems(primary.length))];
+        var secondaryName;
         const greenSecondary = ["Valiant Protector", "Embraced by the moon", "Anarch of Bolas", "Caller of the Pride"];
         const redSecondary = ["Mobilized for war", "Captain of Chaos", "The Flame-Chained", "Fire Artisan", "Scrap Savant", "City Smasher"];
         const blueSecondary = ["the Seeker", "Nightmare Muse", "Architecht of Law", "Grand Arbiter", "Hand of Control"];
         const blackSecondary = ["the Archlich", "Apex Predator", "the Fateshifter", "Shadow Slayer", "Rogue Shadowmage", "Chaos Bringer"];
         const whiteSecondary = ["Adversary of Tyrants", "Unyielding", "Inspiring Leader", "the Greedhearted"];
 
-        var primaryName = primary[(genRandomZeroItems(primary.length))];
 
+        // Generate random secondary name off of color
+        if (color == "green") {
+          secondaryName = greenSecondary[genRandomZeroItems(greenSecondary.length)];
+        } else if (color == "red") {
+          secondaryName = redSecondary[genRandomZeroItems(redSecondary.length)];
+        } else if (color == "black") {
+          secondaryName = blackSecondary[genRandomZeroItems(blackSecondary.length)];
+        } else if (color == "white" || color == "colorless") {
+          secondaryName = whiteSecondary[genRandomZeroItems(whiteSecondary.length)];
+        } else if (color == "blue") {
+          secondaryName = blueSecondary[genRandomZeroItems(blueSecondary.length)];
+        }
 
-
-        // if (secondaryName.substring(0, 4) === "the ") {
-        //     secondaryName = " " + secondaryName;
-        // } else {
-        //     secondaryName = ", " + secondaryName;
-        // }
+        if (secondaryName.substring(0, 4) === "the ") {
+            secondaryName = " " + secondaryName;
+        } else {
+            secondaryName = ", " + secondaryName;
+        }
 
       	const cardName = document.getElementById("cardName");
-        cardName.innerHTML = primaryName;
-
+        cardName.innerHTML = primaryName + secondaryName;
       }
     }
-  }
+}
