@@ -3,8 +3,18 @@
 window.onload = genValue();
 
 // Generate a random number 1 - max
-function genRandom(max) {
+function genRandomOneMax(max) {
   return Math.floor(Math.random() * max + 1);
+}
+
+// Generate a random number 0 - items
+function genRandomZeroItems(items) {
+  return Math.floor(Math.random() * items);
+}
+
+// Generate a random boolean
+function genRandomBoolean() {
+  return Math.random() < 0.5;
 }
 
 function genValue() {
@@ -15,7 +25,7 @@ function genValue() {
 
     // Set a random number 1 - 8 to the array
     for (var i = 0; i < arrayLength; i++) {
-        value[i] = genRandom(8);
+        value[i] = genRandomOneMax(8);
     }
 
     console.log("VALUE: " + value);
@@ -27,49 +37,36 @@ function genValue() {
     var power = value[3];
     var toughness = value[4];
 
-    // Generate values for the card
-    genName();
-    genMana(mana);
-    genPowerToughness(power, toughness);
+    // Generate random color
     genColor();
-    genType(type);
 
+    // Generate values for the card
+    genPowerToughness(power, toughness);
+  
     // Set text format to selected format, or stay random if unselected
-    let selText = document.querySelector("#selFormat");
-    let selTextVal = selText.selectedIndex;
-    if (selTextVal == 0) {
+    var selText = document.querySelector("#selFormat").selectedIndex;
+    if (selText == 0) {
       genText(text);
     } else {
-      genText(selTextVal);
-    }
-
-    // Mana
-    function genMana(mana) {
-        // Set mana
-        var manaValue = document.getElementById("cardMana");
-        console.log(mana);
-
-        manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
-    }
+    
 
     // Text
     function genText(textValue) {
         // Set text format effects/keywords
         var textBox = document.getElementById("cardText");
         var textType = "";
-        var textEffect = genRandom(8);
-        var textTrigger = genRandom(5);
-        var textCost = genRandom(4);
+        var textEffect = genRandomOneMax(8);
+        var textTrigger = genRandomOneMax(5);
+        var textCost = genRandomOneMax(4);
         var textAbility = "";
 
         console.log("textEffect: " + textEffect);
         console.log("textTrigger: " + textTrigger);
         console.log("textCost: " + textCost);
-        console.log("selFormat:" + selTextVal);
 
         // Type
         const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
-        textType = typeArray[(genRandom(7) - 1)];
+        textType = typeArray[(genRandomZeroItems(typeArray.length))];
 
         // Effect
         switch (textEffect) {
@@ -121,7 +118,7 @@ function genValue() {
 
         // Ability
         const abilityArray = ["Deathtouch", "Lifelink", "Vigilance", "First Strike", "Double Strike", "Indestructible", "Haste", "Trample"];
-        textAbility = abilityArray[(genRandom(8) - 1)];
+        textAbility = abilityArray[(genRandomZeroItems(abilityArray.length))];
 
         // Set text format and add it to the textbox
       
@@ -168,7 +165,7 @@ function genValue() {
     function genPowerToughness(power, toughness) {
         // Set Power and Toughness
         var cardPowerToughness = document.getElementById("cardPowerToughness");
-        //let toughnessValue = document.getElementById("cardToughness");
+        //var toughnessValue = document.getElementById("cardToughness");
 
         cardPowerToughness.innerHTML = power + " / " + toughness;
     }
@@ -176,40 +173,167 @@ function genValue() {
   
     // Color
     function genColor() {
-        // Setting color from 1 - 6
-        const colorArray = ["colorless", "white", "red", "blue", "green", "black"];
-        const container = document.getElementById("container");
+      // Setting color from 1 - 6
+      const colorArray = ["colorless", "white", "red", "blue", "green", "black"];
+      const container = document.getElementById("container");
+    
+      var color;
+      var selColor = document.querySelector("#selColor").value;
+      console.log("selColor Value: " + selColor);
 
-        container.style.backgroundImage = "url('./images/background_" + colorArray[(genRandom(6) - 1)] + ".png')";
+
+      if (selColor != "default") {
+        color = selColor;
+      } else {
+        color = colorArray[(genRandomZeroItems(colorArray.length))];
+      }
+      container.style.backgroundImage = "url('./images/background_" + color + ".png')";
+      console.log("Color: " + color);
+
+      genMana(color)
+      genType(color)
+      return color;
+    }
+  
+    // Mana
+    function genMana(color) {
+        var mana = genRandomOneMax(8);
+
+        // Set mana
+        var manaValue = document.getElementById("cardMana");
+        var manaValue2 = document.getElementById("cardMana2");
+        var manaValue3 = document.getElementById("cardMana3");
+
+        console.log("mana: " + mana);
+        
+        // Clear out any symbols from a previous card
+        manaValue.style.backgroundImage = "none";
+        manaValue2.style.backgroundImage = "none";
+        manaValue3.style.backgroundImage = "none";
+
+        if (color == "colorless") {
+          manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
+        } else {
+          switch (mana) {
+            case 1:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              break;
+            case 2:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/1.png')";
+              break;
+            case 3:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/2.png')";
+              break;
+            case 4:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/2.png')";
+              break;
+            case 5:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/3.png')";
+              break;
+            case 6:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/4.png')";
+              break;
+            case 7:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/5.png')";
+              break;
+            case 8:
+              manaValue.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue2.style.backgroundImage = "url('./images/mana_" + color + ".png')";
+              manaValue3.style.backgroundImage = "url('./images/6.png')";
+              break;
+          }
+        }
     }
 
-    // Type
-    function genType(number) {
-        // Sets creature types
-        const typeArray = ["Human", "Elf", "Dwarf", "Vampire", "Construct", "Beast", "Bird", "Phoenix"];
+
+    function genType(color) {
         const typeID = document.getElementById("cardType");
 
-        typeID.innerHTML = "Legendary Creature - " + typeArray[(genRandom(number) - 1)];
+        var creature;
+
+        switch(color) {
+          case "green":
+            // Decide if creature is going to be an elf, beast, or null
+            var random = genRandomZeroItems(4);
+            if (random == 0) {
+              creature = "Elf";
+            } else if (random == 1) {
+              creature = "Beast";
+            } else {
+              creature = null;
+            }
+            break;
+
+          case "red":
+            // Is creature going to be a dwarf?
+            genRandomBoolean() ? creature = "Dwarf" : creature = null;
+            break;
+
+          case "black":
+            // Is creature going to be a vampire?
+            genRandomBoolean() ? creature = "Vampire" : creature = null;
+            break;
+          
+          case "blue":
+            // Is creature going to be a leviathan?
+            genRandomBoolean() ? creature = "Leviathan" : creature = null;
+            break;
+          
+          case "uncollored":
+            // Is creature going to be a construct?
+            genRandomBoolean() ? creature = "Construct" : creature = null;
+            break;
+        }
+
+        if (creature == null) {
+          genRandomBoolean() ? creature = "Human" : creature = "Bird";
+        }
+
+        typeID.innerHTML = "Legendary Creature - " + creature;
+
+        genName(color);
     }
 
-    function genName() {
+    function genName(color) {
+      // Set the name if there is one
+      var nameBox = document.getElementById("nameTextBox").value;
+    
+      if (nameBox != "") {
+        cardName.innerHTML = nameBox;
+      } else {
+        
         const primary = ["Aboshan", "Acererak", "Valec", "Rekniros", "Bongata", "Gangzia", "Deguro", "Chagi", "Trevraiyur", "Noviayed", "Lia", "Zuoshon", "Yiunren", "Shiu", "Chenja",
         "Choye", "Aelnina", "Cadduc", "Tigis", "Moji", "Feiti", "Phasha", "Nastaexi", "Tosi", "Vollis"];
 
-        const secondary = ["the Archlich", "Apex Predator", "Mobilized for War", "the Seeker", "Adversary of Tyrants", "Caller of the Pride", "Unyielding",
-        "Inspiring Leader", "the Greedhearted", "Valiant Protector", "the Fateshifter", "Captain of Chaos", "the Flame-Chained", "Embraced by the Moon", "Nightmare Muse", 
-        "Fire Artisan", "Shadow Slayer", "Scrap Savant", "Rogue Shadowmage", "Anarch of Bolas", "Chaos Bringer", "City Smasher", "Architecht of Law", "Grand Arbiter", "Hand of Control"];
+        const greenSecondary = ["Valiant Protector", "Embraced by the moon", "Anarch of Bolas", "Caller of the Pride"];
+        const redSecondary = ["Mobilized for war", "Captain of Chaos", "The Flame-Chained", "Fire Artisan", "Scrap Savant", "City Smasher"];
+        const blueSecondary = ["the Seeker", "Nightmare Muse", "Architecht of Law", "Grand Arbiter", "Hand of Control"];
+        const blackSecondary = ["the Archlich", "Apex Predator", "the Fateshifter", "Shadow Slayer", "Rogue Shadowmage", "Chaos Bringer"];
+        const whiteSecondary = ["Adversary of Tyrants", "Unyielding", "Inspiring Leader", "the Greedhearted"];
 
-        var primaryName = primary[(genRandom(25) - 1)];
-        var secondaryName = secondary[(genRandom(25) - 1)];
+        var primaryName = primary[(genRandomZeroItems(primary.length))];
 
-        if (secondaryName.substring(0, 4) === "the ") {
-            secondaryName = " " + secondaryName;
-        } else {
-            secondaryName = ", " + secondaryName;
-        }
+
+
+        // if (secondaryName.substring(0, 4) === "the ") {
+        //     secondaryName = " " + secondaryName;
+        // } else {
+        //     secondaryName = ", " + secondaryName;
+        // }
 
       	const cardName = document.getElementById("cardName");
-        cardName.innerHTML = primaryName + secondaryName;
+        cardName.innerHTML = primaryName;
+
+      }
     }
 }

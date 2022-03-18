@@ -25,6 +25,20 @@
 /*  border: 3.7px solid red;*/
 }
 
+#cardMana2 {
+  float: right;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+}
+
+#cardMana3 {
+  float: right;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+}
+
 /*#manaDiv {
   float: left;
   margin-top: 1%;
