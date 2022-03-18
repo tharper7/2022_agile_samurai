@@ -49,8 +49,6 @@ function genValue() {
         var manaValue = document.getElementById("cardMana");
         console.log(mana);
 
-        //      manaValue.innerHTML = mana;
-
         manaValue.style.backgroundImage = "url('./images/" + mana + ".png')";
     }
 
@@ -159,7 +157,7 @@ function genValue() {
                 }
                 break;
             case 8:
-                textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect;
+                textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect + ".";
                 break;
         }
         
@@ -187,7 +185,7 @@ function genValue() {
 
     // Type
     function genType(number) {
-
+        // Sets creature types
         const typeArray = ["Human", "Elf", "Dwarf", "Vampire", "Construct", "Beast", "Bird", "Phoenix"];
         const typeID = document.getElementById("cardType");
 
