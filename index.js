@@ -192,8 +192,8 @@ function genValue() {
       container.style.backgroundImage = "url('./images/background_" + color + ".png')";
       console.log("Color: " + color);
 
-      genMana(color)
-      genType(color)
+      genMana(color);
+      genType(color);
       genName(color);
       return color;
     }
@@ -303,6 +303,19 @@ function genValue() {
         }
 
         typeID.innerHTML = "Legendary Creature - " + creature;
+
+        genImage(creature);
+    }
+
+    function genImage(creature) {
+      var imageDiv = document.getElementById("imgDiv");
+      var imageString;
+
+      imageString = creature + "_" + genRandomOneMax(5);
+
+      imageDiv.style.backgroundRepeat = "no-repeat";
+      imageDiv.style.backgroundSize = "cover";
+      imageDiv.style.backgroundImage = "url('./images/" + imageString + ".jpg')";
     }
 
     function genName(color) {
