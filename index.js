@@ -48,6 +48,8 @@ function genValue() {
     if (selText == 0) {
       genText(text);
     } else {
+      genText(selText);
+    }
     
 
     // Text
@@ -336,4 +338,4 @@ function genValue() {
 
       }
     }
-}
+  }
