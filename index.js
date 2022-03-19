@@ -39,9 +39,6 @@ function genValue() {
 
     // Generate random color
     genColor();
-
-    // Generate values for the card
-    genPowerToughness(power, toughness);
   
     // Set text format to selected format, or stay random if unselected
     var selText = document.querySelector("#selFormat").selectedIndex;
@@ -314,7 +311,13 @@ function genValue() {
   
     // Mana
     function genMana(color) {
-        var mana = genRandomOneMax(8);
+      // Generate random power and toughness
+        var power = genRandomOneMax(8);
+        var toughness = genRandomOneMax(8);
+        genPowerToughness(power, toughness);
+
+        // Generate mana cost off of power and toughess
+        var mana = Math.round((power + toughness) / 2);
 
         // Set mana
         var manaValue = document.getElementById("cardMana");
