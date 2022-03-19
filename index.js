@@ -18,7 +18,7 @@ function genRandomBoolean() {
 }
 
 function genValue() {
-
+    var color;
     // Create value array
     var value = new Array(5);
     var arrayLength = value.length;
@@ -54,50 +54,144 @@ function genValue() {
 
     // Text
     function genText(textValue) {
-        // Set text format effects/keywords
-        var textBox = document.getElementById("cardText");
-        var textType = "";
-        var textEffect = genRandomOneMax(8);
-        var textTrigger = genRandomOneMax(5);
-        var textCost = genRandomOneMax(4);
-        var textAbility = "";
+      // Set text format effects/keywords
+      var textBox = document.getElementById("cardText");
+      var textType = "";
+      var textEffect = genRandomOneMax(6);
+      var textTrigger = genRandomOneMax(5);
+      var textCost = genRandomOneMax(4);
+      var textAbility = "";
 
-        console.log("textEffect: " + textEffect);
-        console.log("textTrigger: " + textTrigger);
-        console.log("textCost: " + textCost);
-
-        // Type
-        const typeArray = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker", "Land"];
-        textType = typeArray[(genRandomZeroItems(typeArray.length))];
-
+      // Type
+      // Choses which array to use depending on color
+      if (color == "colorless") {
+        const typeArrayColorless = ["Creature", "Artifact"];
+        textType = typeArrayColorless[(genRandomZeroItems(typeArrayColorless.length))];
+        
+      } else if (color == "white"){
+        const typeArrayWhite = ["Creature", "Enchantment", "Planeswalker"];
+        textType = typeArrayWhite[(genRandomZeroItems(typeArrayWhite.length))];
+        
+      } else if (color == "blue") {
+        const typeArrayBlue = ["Creature", "Artifact", "Enchantment", "Instant", "Sorcery", "Planeswalker"];
+        textType = typeArrayBlue[(genRandomZeroItems(typeArrayBlue.length))];
+        
+      } else if (color == "black") { 
+        const typeArrayBlack = ["Creature", "Artifact", "Planeswalker"];
+        textType = typeArrayBlack[(genRandomZeroItems(typeArrayBlack.length))];
+        
+      } else if (color == "red") {
+        const typeArrayRed = ["Creature", "Instant", "Sorcery", "Planeswalker", "Land"];
+        textType = typeArrayRed[(genRandomZeroItems(typeArrayRed.length))];
+        
+      } else if (color == "green") {
+        const typeArrayGreen = ["Creature", "Artifact", "Enchantment", "Land"];
+        textType = typeArrayGreen[(genRandomZeroItems(typeArrayGreen.length))];
+      }
+      // "colorless", "white", "red", "blue", "green", "black"
+      
         // Effect
         switch (textEffect) {
           case 1:
+            if (color == "colorless" || color == "blue" || "white") {
               textEffect = "draw a card";
+            } else if (color == "black") {
+              textEffect = "lose 1 life and draw a card";
+            } else if (color == "red") {
+              textEffect = "draw a card, then discard a card";
+            } else if (color == "green"){
+              textEffect = "add one mana of any color to your mana pool";
+            } else {
+                textEffect = "";
+            }
               break;
           case 2:
+            if (color == "colorless") {
+              textEffect = "create a 3/3 colorless construct artfact creature";
+            } else if (color == "white") {
+              textEffect = "create a 1/1 white bird creature token with lifelink";
+            } else if (color == "red") {
+              textEffect = "create a 1/1 red goblin creature token with haste";
+            } else if (color == "blue") {
+              textEffect = "create a 1/1 blue drake creature token with flying";
+            } else if (color == "green") {
+              textEffect = "create a 3/3 green beast creature token with trample";
+            }  else if (color == "black") {
               textEffect = "create a 2/2 black zombie creature token";
+            } else {
+                textEffect = "";
+            }
               break;
           case 3:
-              textEffect = "draw two cards and then discard a card";
+            if (color == "colorless") {
+                textEffect = "exile target artifact you control then draw a card";
+              } else if (color == "white") {
+                textEffect = "draw a card and gain 3 life";
+              } else if (color == "red") {
+                textEffect = "draw two cards and then discard a card";
+              } else if (color == "blue") {
+                textEffect = "scy two draw two";
+              } else if (color == "green") {
+                textEffect = "draw a card, you may put a land from your hand onto the battlefield";
+              }  else if (color == "black") {
+                textEffect = "draw two cards and lose two life";
+              } else {
+                textEffect = "";
+              }
               break;
           case 4:
               textEffect = "return a noncreature card from your graveyard to your hand";
+            if (color == "colorless") {
+                textEffect = "exile target card from any graveyard";
+              } else if (color == "white") {
+                textEffect = "return target creature from your graveyard to your hand";
+              } else if (color == "red") {
+                textEffect = "deal three damgage to any target";
+              } else if (color == "blue") {
+                textEffect = "return a noncreature card from your graveyard to your hand";
+              } else if (color == "green") {
+                textEffect = "exile target creature card from a graveyard then put a +1/+1 counter on target creature.";
+              }  else if (color == "black") {
+                textEffect = "return target creature card from your graveyard to the battlefield";
+              } else {
+                textEffect = "";
+              }
               break;
           case 5:
-              textEffect = "return a target nonland permanent to it's owners hand";
+            if (color == "colorless") {
+                textEffect = "exile target card from any graveyard";
+              } else if (color == "white") {
+                textEffect = "return target creature from your graveyard to your hand";
+              } else if (color == "red") {
+                textEffect = "exile target instent from graveyard. You may play the targeted instent from exile this turn";
+              } else if (color == "blue") {
+                textEffect = "return a noncreature card from your graveyard to your hand";
+              } else if (color == "green") {
+                textEffect = "exile target creature card from a graveyard then put a +1/+1 counter on target creature.";
+              }  else if (color == "black") {
+                textEffect = "return target creature card from your graveyard to the battlefield";
+              } else {
+                textEffect = "";
+              }
               break;
           case 6:
-              textEffect = "exile a card from a graveyard";
-              break;
-          case 7:
-              textEffect = "add one mana of any color to your mana pool";
-              break;
-          case 8:
-              textEffect = "target player mills 2 cards";
+              if (color == "colorless") {
+                textEffect = "exile target colorless permanent";
+              } else if (color == "white") {
+                textEffect = "exile target creature";
+              } else if (color == "red") {
+                textEffect = "deal three damage to any target";
+              } else if (color == "blue") {
+                textEffect = "return target permenent to its owners hand";
+              } else if (color == "green") {
+                textEffect = "target creature fights anouther target creature";
+              }  else if (color == "black") {
+                textEffect = "destroy target creature";
+              } else {
+                textEffect = "";
+              }
               break;
         }
-        
       
         // Triggers
         switch (textTrigger) {
@@ -119,8 +213,30 @@ function genValue() {
         }
 
         // Ability
-        const abilityArray = ["Deathtouch", "Lifelink", "Vigilance", "First Strike", "Double Strike", "Indestructible", "Haste", "Trample"];
-        textAbility = abilityArray[(genRandomZeroItems(abilityArray.length))];
+      if (color == "colorless") {
+        const abilityArrayColorless = ["Vigilance", "First Strike", "Indestructible", "Trample"];
+        textAbility = abilityArrayColorless[(genRandomZeroItems(abilityArrayColorless.length))];
+        
+      } else if (color == "white"){
+        const abilityArrayWhite = ["Lifelink", "Vigilance", "First Strike", "Flying"];
+        textAbility = abilityArrayWhite[(genRandomZeroItems(abilityArrayWhite.length))];
+        
+      } else if (color == "blue") {
+        const abilityArrayBlue = ["Flying"];
+        textAbility = abilityArrayBlue[(genRandomZeroItems(abilityArrayBlue.length))];
+        
+      } else if (color == "black") { 
+        const abilityArrayBlack = ["Deathtouch", "Lifelink", "Flying"];
+        textAbility = abilityArrayBlack[(genRandomZeroItems(abilityArrayBlack.length))];
+        
+      } else if (color == "red") {
+        const abilityArrayRed = ["Vigilance", "First Strike", "Double Strike", "Haste"];
+        textAbility = abilityArrayRed[(genRandomZeroItems(abilityArrayRed.length))];
+        
+      } else if (color == "green") {
+        const abilityArrayGreen = ["Vigilance", "Trample"];
+        textAbility = abilityArrayGreen[(genRandomZeroItems(abilityArrayGreen.length))];
+      }
 
         // Set text format and add it to the textbox
       
@@ -133,10 +249,14 @@ function genValue() {
                 textBox.innerHTML = "Whenever a creature you control " + textTrigger + ", you may " + textEffect + ".";
                 break;
             case 3:
-                textBox.innerHTML = textAbility + "<br>" + textCost + ", TAP: " + textEffect + " and you gain 3 life.";
+                textBox.innerHTML = textAbility + "<br>" + textCost + ", TAP: " + textEffect;
                 break;
             case 4:
-                textBox.innerHTML = textAbility + "<br>If you cast a " + textType + " this turn, creatures you control get +" + textCost + "/+" + textCost + ".";
+                if (color == "green" || color == "red" || color == "colorless" || color == "white") {
+                  textBox.innerHTML = textAbility + "<br>If you cast a " + textType + " this turn, creatures you control get +" + textCost + "/+" + textCost + ".";
+                } else {
+                  textBox.innerHTML = textAbility + "<br>If you cast a " + textType + " this turn, creatures you control get " + textAbility + ".";
+                }
                 break;
             case 5:
                 textBox.innerHTML = textAbility + "<br>Sacrifice " + textCost + " other creatures: " + textEffect + ". Target " + textType + " gains shroud until end of turn.";
@@ -145,21 +265,16 @@ function genValue() {
                 if (textType == "Instant" || textType == "Sorcery") {
                     textBox.innerHTML = textAbility + "<br>If you have cast at least " + textCost + " " + textType + ", until end of turn " + textType + " you control can't be countered.";
                 } else {
-                    textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have indestructible.";
+                    textBox.innerHTML = textAbility + "<br>If you control at least " + textCost + " " + textType + ", " + textType + "s you control have " + textAbility;
                 }
                 break;
             case 7:
-                if (textType == "Land") {
-                  textBox.innerHTML = textAbility + "<br>At the begining of your upkeep, you may play a " + textType + " card from your graveyard.";
-                } else {
-                  textBox.innerHTML = "At the begining of your upkeep, you may play a " + textType + " card from your graveyard. This spell costs " + textCost + " less to cast.";
-                }
+                  textBox.innerHTML = textAbility + "<br>At the begining of your upkeep, you may " + textEffect + ".";
                 break;
             case 8:
                 textBox.innerHTML = textAbility + "<br>At the beginning of your end step, you may discard a card. If you do, " + textEffect + ".";
                 break;
         }
-        
     }
 
 
@@ -179,7 +294,6 @@ function genValue() {
       const colorArray = ["colorless", "white", "red", "blue", "green", "black"];
       const container = document.getElementById("container");
     
-      var color;
       var selColor = document.querySelector("#selColor").value;
       console.log("selColor Value: " + selColor);
 
@@ -192,8 +306,8 @@ function genValue() {
       container.style.backgroundImage = "url('./images/background_" + color + ".png')";
       console.log("Color: " + color);
 
-      genMana(color)
-      genType(color)
+      genMana(color);
+      genType(color);
       return color;
     }
   
@@ -336,6 +450,6 @@ function genValue() {
       	const cardName = document.getElementById("cardName");
         cardName.innerHTML = primaryName;
 
-      }
     }
   }
+}
